@@ -1,21 +1,8 @@
-import { Estoque } from './controller/controleEstoque'; 
+import {Item} from './model/interfaceData'
+import {adicionarItem, removerItem,listarItens,valorTotal,pesoTotal,quantidadeTotal,mediaValor,mediaPeso,quantidadeProdutos} from './controller/controleEstoque.js'
 
-function lerEntrada(mensagem: string): Promise<string> {
-    const readline = require('readline').createInterface({
-        input: process.stdin,
-        output: process.stdout
-    });
-
-    return new Promise<string>((resolve) => {
-        readline.question(mensagem, (resposta: string) => {
-            resolve(resposta);
-            readline.close();
-        });
-    });
-}
 
 async function main() {
-    const estoque = new Estoque('estoque.csv');
 
     while (true) {
         console.log("\n1. Adicionar Item ao Inventário");
@@ -29,52 +16,70 @@ async function main() {
         console.log("9. Ver Quantidade Total de Produtos no Inventário");
         console.log("0. Sair");
 
-        const opcao = await lerEntrada("\nEscolha uma opção: ");
+        const opcao = prompt("\nEscolha uma opção: ");
 
         switch (opcao) {
             case '1':
-                const nome = await lerEntrada("Nome do item: ");
-                const peso = parseFloat(await lerEntrada("Peso do item: "));
-                const valor = parseFloat(await lerEntrada("Valor do item: "));
-                const quantidade = parseInt(await lerEntrada("Quantidade do item: "));
-
-                estoque.adicionarItem(nome, peso, valor, quantidade);
-                console.log("Item adicionado com sucesso!");
-                break;
-
+                var X = prompt("Nome do item: ");
+                var Y = prompt("Peso do item: ");
+                var Z = prompt("Valor do item: ");
+                var W = prompt("Quantidade do item: ");
+                if(X!= null && Y!= null && Z!= null && W!= null){
+                    const dados={
+                        nome:X,
+                        peso: parseFloat(Y),
+                        valor:parseFloat(Z),
+                        quantidade:parseFloat(W)
+                    } as Item
+    
+                    await adicionarItem(dados);
+                    break;
+                }
+                
             case '2':
-                const nomeItemRemover = await lerEntrada("Nome do item a ser removido: ");
-                const mensagemRemocao = estoque.removerItem(nomeItemRemover);
-                console.log(mensagemRemocao);
-                break;
+
+            var nomeItemRemover = prompt("Nome do item: ");
+            if (nomeItemRemover !== null) {
+                await removerItem(nomeItemRemover);
+            } else {
+                console.log("Nenhum nome de item fornecido.");
+            }
+            break;
+
 
             case '3':
                 console.log("Itens no inventário:");
-                console.log(estoque.listarItens());
+                listarItens();
                 break;
 
             case '4':
-                console.log("Valor total do inventário:", estoque.valorTotal());
+                const total=await valorTotal();
+                console.log('"Valor total do inventário:", ${total}');
                 break;
 
             case '5':
-                console.log("Peso total do inventário:", estoque.pesoTotal());
+                const pesot=await pesoTotal();
+                console.log('"Peso total do inventário:", ${pesot}');
                 break;
+                
 
             case '6':
-                console.log("Média de valor dos itens:", estoque.mediaValor());
-                break;
+                const mediat=await mediaValor();
+                console.log('"Média de valor dos itens:", ${mediat}');
 
             case '7':
-                console.log("Média de peso dos itens:", estoque.mediaPeso());
+                const mediap=await mediaPeso();
+                console.log('"Média de peso dos itens:", ${mediap}');
                 break;
 
             case '8':
-                console.log("Quantidade total de itens no inventário:", estoque.quantidadeTotal());
+                const quantidadet= await quantidadeTotal();
+                console.log('"Quantidade total de items no inventário:", ${quantidadet}');
                 break;
 
             case '9':
-                console.log("Quantidade total de produtos no inventário:", estoque.quantidadeProdutos());
+                const quantidadep= await quantidadeProdutos();
+                console.log('"Quantidade total de produtos no inventário:", ${quantidadep}');
                 break;
 
             case '0':
