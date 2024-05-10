@@ -23,7 +23,7 @@ export async function removerItem(nome:string){
 
 export async function listarItens() {
     try {
-        const dados = await Estoque.listar();
+        await Estoque.listar();
     } catch (error) {
         console.log("Erro ao listar itens:", error);
     }

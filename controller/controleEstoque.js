@@ -40,7 +40,7 @@ exports.removerItem = removerItem;
 function listarItens() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.listar();
+            yield serviceEstoque_1.default.listar();
         }
         catch (error) {
             console.log("Erro ao listar itens:", error);

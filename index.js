@@ -10,6 +10,7 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 const controleEstoque_js_1 = require("./controller/controleEstoque.js");
+const prompt = require('prompt-sync')({ sigint: true });
 function main() {
     return __awaiter(this, void 0, void 0, function* () {
         while (true) {

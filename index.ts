@@ -1,7 +1,7 @@
 import {Item} from './model/interfaceData'
 import {adicionarItem, removerItem,listarItens,valorTotal,pesoTotal,quantidadeTotal,mediaValor,mediaPeso,quantidadeProdutos} from './controller/controleEstoque.js'
 
-
+const prompt=require('prompt-sync')({sigint:true});
 async function main() {
 
     while (true) {

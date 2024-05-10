@@ -47,7 +47,7 @@ class Estoque {
     listar() {
         return __awaiter(this, void 0, void 0, function* () {
             const dados = yield (0, readCSV_1.default)(filepath);
-            return dados;
+            console.log(dados);
         });
     }
     valorT() {

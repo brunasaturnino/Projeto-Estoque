@@ -1,9 +1,8 @@
 import {Item} from '../model/interfaceData'
-import * as fs from 'fs';
 import writeCSV from '../model/writeCSV'
 import readCSV from '../model/readCSV'
 
-const filepath='../model/estoque.csv'
+const filepath='model/estoque.csv'
 
 export class Estoque {
 
@@ -41,7 +40,7 @@ export class Estoque {
 
     async listar() {
         const dados = await readCSV(filepath);
-        return dados;
+        console.log(dados);
     }
         
 
