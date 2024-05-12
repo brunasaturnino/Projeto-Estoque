@@ -1,13 +1,14 @@
 import {Item} from '../model/interfaceData'
 import writeCSV from '../model/writeCSV'
 import readCSV from '../model/readCSV'
+import * as fs from 'fs';
 
 const filepath='model/estoque.csv'
 
 export class Estoque {
 
     async criar(data:Item) {
-        if (!data.nome || isNaN(data.peso) || isNaN(data.valor) || isNaN(data.quantidade) || data.peso <= 0 || data.valor <= 0 || data.quantidade <= 0) {
+        if (typeof data.nome !== 'string' || isNaN(data.peso) || isNaN(data.valor) || isNaN(data.quantidade) || data.peso <= 0 || data.valor <= 0 || data.quantidade <= 0) {
             throw new Error("Por favor, forneça informações válidas para adicionar o item.");
         }
         const dados = await readCSV(filepath);
@@ -24,18 +25,19 @@ export class Estoque {
     async remover(nome:string){
             const dados = await readCSV(filepath);
             const itemIndex = dados.findIndex(item => item.nome === nome);
-        
+            const quantidade= await this.quantidadeP()
+            if(quantidade==1){
+                throw new Error("Não é possível remover todos os itens do estoque.")
+            }
             if (itemIndex === -1) {
                 throw new Error("O item não foi encontrado no inventário.");
             }
         
-            const itemRemovido = dados.splice(itemIndex, 1)[0];
-            
+            dados.splice(itemIndex, 1);
+            await fs.writeFileSync(filepath, '');
+            fs.appendFileSync(filepath, 'nome,valor,peso,quantidade\n');
             await writeCSV(filepath, dados);
-        
-            return `Item removido do inventário: ${itemRemovido.nome}, Peso: ${itemRemovido.peso}, Valor: ${itemRemovido.valor}, Quantidade: ${itemRemovido.quantidade}`;
         }
-        
     
 
     async listar() {
@@ -55,8 +57,8 @@ export class Estoque {
     }
 
     async quantidadeT(): Promise<number> {
-        const dados = await readCSV(filepath);
-        return dados.reduce((total, dados) => total + dados.quantidade, 0);
+        const items = await readCSV(filepath);
+        return items.reduce((total, items) => total + (items.quantidade*1), 0);
     }
 
     async mediaV(): Promise<number> {

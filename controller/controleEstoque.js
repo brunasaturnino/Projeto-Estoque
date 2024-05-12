@@ -18,7 +18,7 @@ function adicionarItem(data) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield serviceEstoque_1.default.criar(data);
-            console.log("Produto adicionado com sucesso.");
+            console.log("Produto adicionado com sucesso.\n");
         }
         catch (error) {
             console.log("Erro ao adicionar produto:", error);
@@ -30,6 +30,7 @@ function removerItem(nome) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             yield serviceEstoque_1.default.remover(nome);
+            console.log(`Item removido com sucesso.\n`);
         }
         catch (error) {
             console.log("Erro ao remover produto:", error);
@@ -51,7 +52,8 @@ exports.listarItens = listarItens;
 function valorTotal() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.valorT();
+            const total = yield serviceEstoque_1.default.valorT();
+            console.log(`Valor total do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);
@@ -62,7 +64,8 @@ exports.valorTotal = valorTotal;
 function pesoTotal() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.pesoT();
+            const total = yield serviceEstoque_1.default.pesoT();
+            console.log(`Peso total do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);
@@ -73,7 +76,8 @@ exports.pesoTotal = pesoTotal;
 function quantidadeTotal() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.quantidadeT();
+            const total = yield serviceEstoque_1.default.quantidadeT();
+            console.log(`Quantidade total de itens do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);
@@ -84,7 +88,8 @@ exports.quantidadeTotal = quantidadeTotal;
 function mediaValor() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.mediaV();
+            const total = yield serviceEstoque_1.default.mediaV();
+            console.log(`Valor médio do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);
@@ -95,7 +100,8 @@ exports.mediaValor = mediaValor;
 function mediaPeso() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.mediaP();
+            const total = yield serviceEstoque_1.default.mediaP();
+            console.log(`Peso médio do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);
@@ -106,7 +112,8 @@ exports.mediaPeso = mediaPeso;
 function quantidadeProdutos() {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const dados = yield serviceEstoque_1.default.quantidadeP();
+            const total = yield serviceEstoque_1.default.quantidadeP();
+            console.log(`Quantidade total de produtos do estoque: ${total}\n`);
         }
         catch (error) {
             console.log("Erro ao calcular:", error);

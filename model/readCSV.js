@@ -35,7 +35,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.readCSV = void 0;
 const fs = __importStar(require("fs"));
 const csv_parser_1 = __importDefault(require("csv-parser"));
 const readCSV = (filePath) => __awaiter(void 0, void 0, void 0, function* () {
@@ -48,5 +47,4 @@ const readCSV = (filePath) => __awaiter(void 0, void 0, void 0, function* () {
             .on('error', (error) => reject(error));
     });
 });
-exports.readCSV = readCSV;
-exports.default = exports.readCSV;
+exports.default = readCSV;

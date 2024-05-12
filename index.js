@@ -43,39 +43,29 @@ function main() {
                     }
                 case '2':
                     var nomeItemRemover = prompt("Nome do item: ");
-                    if (nomeItemRemover !== null) {
-                        yield (0, controleEstoque_js_1.removerItem)(nomeItemRemover);
-                    }
-                    else {
-                        console.log("Nenhum nome de item fornecido.");
-                    }
+                    yield (0, controleEstoque_js_1.removerItem)(nomeItemRemover);
                     break;
                 case '3':
                     console.log("Itens no inventário:");
-                    (0, controleEstoque_js_1.listarItens)();
+                    yield (0, controleEstoque_js_1.listarItens)();
                     break;
                 case '4':
-                    const total = yield (0, controleEstoque_js_1.valorTotal)();
-                    console.log('"Valor total do inventário:", ${total}');
+                    yield (0, controleEstoque_js_1.valorTotal)();
                     break;
                 case '5':
-                    const pesot = yield (0, controleEstoque_js_1.pesoTotal)();
-                    console.log('"Peso total do inventário:", ${pesot}');
+                    yield (0, controleEstoque_js_1.pesoTotal)();
                     break;
                 case '6':
-                    const mediat = yield (0, controleEstoque_js_1.mediaValor)();
-                    console.log('"Média de valor dos itens:", ${mediat}');
+                    yield (0, controleEstoque_js_1.mediaValor)();
+                    break;
                 case '7':
-                    const mediap = yield (0, controleEstoque_js_1.mediaPeso)();
-                    console.log('"Média de peso dos itens:", ${mediap}');
+                    yield (0, controleEstoque_js_1.mediaPeso)();
                     break;
                 case '8':
-                    const quantidadet = yield (0, controleEstoque_js_1.quantidadeTotal)();
-                    console.log('"Quantidade total de items no inventário:", ${quantidadet}');
+                    yield (0, controleEstoque_js_1.quantidadeTotal)();
                     break;
                 case '9':
-                    const quantidadep = yield (0, controleEstoque_js_1.quantidadeProdutos)();
-                    console.log('"Quantidade total de produtos no inventário:", ${quantidadep}');
+                    yield (0, controleEstoque_js_1.quantidadeProdutos)();
                     break;
                 case '0':
                     console.log("Saindo");

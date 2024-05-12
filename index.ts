@@ -1,5 +1,7 @@
 import {Item} from './model/interfaceData'
 import {adicionarItem, removerItem,listarItens,valorTotal,pesoTotal,quantidadeTotal,mediaValor,mediaPeso,quantidadeProdutos} from './controller/controleEstoque.js'
+import * as fs from 'fs';
+
 
 const prompt=require('prompt-sync')({sigint:true});
 async function main() {
@@ -39,47 +41,37 @@ async function main() {
             case '2':
 
             var nomeItemRemover = prompt("Nome do item: ");
-            if (nomeItemRemover !== null) {
-                await removerItem(nomeItemRemover);
-            } else {
-                console.log("Nenhum nome de item fornecido.");
-            }
+            await removerItem(nomeItemRemover);
             break;
 
 
             case '3':
                 console.log("Itens no inventário:");
-                listarItens();
+                await listarItens();
                 break;
 
             case '4':
-                const total=await valorTotal();
-                console.log('"Valor total do inventário:", ${total}');
+                await valorTotal();
                 break;
 
             case '5':
-                const pesot=await pesoTotal();
-                console.log('"Peso total do inventário:", ${pesot}');
+                await pesoTotal();
                 break;
                 
-
             case '6':
-                const mediat=await mediaValor();
-                console.log('"Média de valor dos itens:", ${mediat}');
-
+                await mediaValor();
+                break;
+                
             case '7':
-                const mediap=await mediaPeso();
-                console.log('"Média de peso dos itens:", ${mediap}');
+                await mediaPeso();
                 break;
 
             case '8':
-                const quantidadet= await quantidadeTotal();
-                console.log('"Quantidade total de items no inventário:", ${quantidadet}');
+                await quantidadeTotal();
                 break;
 
             case '9':
-                const quantidadep= await quantidadeProdutos();
-                console.log('"Quantidade total de produtos no inventário:", ${quantidadep}');
+                await quantidadeProdutos();
                 break;
 
             case '0':

@@ -32,7 +32,6 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.writeCSV = void 0;
 const csv_writer_1 = require("csv-writer");
 const fs = __importStar(require("fs"));
 const writeCSV = (filePath, data) => __awaiter(void 0, void 0, void 0, function* () {
@@ -40,13 +39,12 @@ const writeCSV = (filePath, data) => __awaiter(void 0, void 0, void 0, function*
         path: filePath,
         header: [
             { id: 'nome', title: 'nome' },
-            { id: 'peso', title: 'peso' },
             { id: 'valor', title: 'valor' },
+            { id: 'peso', title: 'peso' },
             { id: 'quantidade', title: 'quantidade' }
         ],
         append: fs.existsSync(filePath)
     });
     return csvWriter.writeRecords(data);
 });
-exports.writeCSV = writeCSV;
-exports.default = exports.writeCSV;
+exports.default = writeCSV;
